@@ -1,0 +1,64 @@
+{
+    "name": "vscode-compare",
+    "displayName": "vscode-compare",
+    "description": "File and Folder Comparison Tool",
+    "version": "0.0.1",
+    "publisher": "slevesque",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onView:diffExplorer",
+        "onCommand:diffexplorer.compareSource",
+        "onCommand:diffexplorer.compareWithSelected"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "diffexplorer.compareSource",
+                "title": "Select Folder for Compare"
+            },
+            {
+                "command": "diffexplorer.compareWithSelected",
+                "title": "Compare Folder with Selected"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "diffexplorer.compareSource",
+                    "when": "explorerResourceIsFolder"
+                },
+                {
+                    "command": "diffexplorer.compareWithSelected",
+                    "when": "explorerResourceIsFolder && folderSelected"
+                }
+            ]
+        },
+        "views": {
+            "explorer": [
+                {
+                    "id": "diffExplorer",
+                    "name": "Diff Explorer"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21",
+        "@types/node": "^8.10.25",
+        "@types/mocha": "^2.2.42"
+    }
+}

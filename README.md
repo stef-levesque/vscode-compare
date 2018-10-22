@@ -19,6 +19,7 @@ Visual Studio Code v1.28.0
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [vscode-docs on GitHub](https://github.com/Microsoft/vscode-docs)
+* [dir-compare on GitHub](https://github.com/gliviu/dir-compare)
 
 ## License
 

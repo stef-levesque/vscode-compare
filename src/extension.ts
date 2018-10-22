@@ -1,10 +1,15 @@
 'use strict';
 
 import * as vscode from 'vscode';
+import {DiffTreeDataProvider} from './DiffExplorer';
 
 let globalResourceToCompare: vscode.Uri;
 
 export function activate(context: vscode.ExtensionContext) {
+
+  const diffExplorerProvider = new DiffTreeDataProvider();
+
+  vscode.window.registerTreeDataProvider('diffExplorer', diffExplorerProvider);
 
   context.subscriptions.push(
 
@@ -20,6 +25,8 @@ export function activate(context: vscode.ExtensionContext) {
       vscode.commands.executeCommand('setContext', 'folderSelected', false);
 
       console.log("Compare " + globalResourceToCompare.toString() + " with " + uri.toString());
+
+      diffExplorerProvider.openDiff(globalResourceToCompare, uri);
 
     })
 
